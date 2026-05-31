@@ -31,17 +31,18 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Generate Capacitor Assets
-        run: npx @capacitor/assets generate --android
-        
       # ==== Build USER App ====
       - name: Build User Web App
         run: npm run build:user
         
+      - name: Add Android Platform (if missing)
+        run: npx cap add android --config capacitor.user.config.ts || true
+
+      - name: Generate Capacitor Assets
+        run: npx @capacitor/assets generate --android
+
       - name: Sync Capacitor (User)
-        run: |
-          npx cap add android || true
-          npx cap sync android --config capacitor.user.config.ts
+        run: npx cap sync android --config capacitor.user.config.ts
 
       - name: Build User APK
         working-directory: ./android
