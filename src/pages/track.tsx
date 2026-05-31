@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams, Link, useLocation } from "wouter";
-import { ChevronLeft, Clock, Box, Truck, CheckCircle, Package, Trash2, AlertCircle } from "lucide-react";
+import { ChevronLeft, Clock, Box, Truck, CheckCircle, Package, Trash2 } from "lucide-react";
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";

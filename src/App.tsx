@@ -32,6 +32,19 @@ const queryClient = new QueryClient({
 });
 
 function Router() {
+  const mode = import.meta.env.VITE_APP_MODE;
+
+  if (mode === "admin") {
+    return (
+      <Switch>
+        <Route path="/" component={Admin} />
+        <Route path="/admin" component={Admin} />
+        <Route path="/admin/secure-panel" component={Admin} />
+        <Route component={Admin} />
+      </Switch>
+    );
+  }
+
   return (
     <Switch>
       <Route path="/" component={Home} />
@@ -47,8 +60,12 @@ function Router() {
       <Route path="/transport" component={Transport} />
       <Route path="/custom-order" component={CustomOrder} />
       <Route path="/checkout/success" component={CheckoutSuccess} />
-      <Route path="/admin" component={Admin} />
-      <Route path="/admin/secure-panel" component={Admin} />
+      {mode !== "user" && (
+        <>
+          <Route path="/admin" component={Admin} />
+          <Route path="/admin/secure-panel" component={Admin} />
+        </>
+      )}
       <Route component={NotFound} />
     </Switch>
   );
