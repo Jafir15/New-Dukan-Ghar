@@ -7,8 +7,8 @@
     "dev": "npm run dev:web",
     "dev:web": "vite --port 5001",
     "build": "vite build",
-    "build:user": "cross-env VITE_APP_MODE=user vite build && cp capacitor.user.config.ts capacitor.config.ts && npx cap copy android",
-    "build:admin": "cross-env VITE_APP_MODE=admin vite build && cp capacitor.admin.config.ts capacitor.config.ts && npx cap copy android",
+    "build:user": "cross-env VITE_APP_MODE=user vite build",
+    "build:admin": "cross-env VITE_APP_MODE=admin vite build",
     "preview": "vite preview",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "seed": "node src/lib/seedData.js"
