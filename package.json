@@ -7,8 +7,8 @@
     "dev": "npm run dev:web",
     "dev:web": "vite --port 5001",
     "build": "vite build",
-    "build:user": "set VITE_APP_MODE=user&& vite build && npx cap copy android --config capacitor.user.config.ts",
-    "build:admin": "set VITE_APP_MODE=admin&& vite build && npx cap copy android --config capacitor.admin.config.ts",
+    "build:user": "cross-env VITE_APP_MODE=user vite build && cp capacitor.user.config.ts capacitor.config.ts && npx cap copy android",
+    "build:admin": "cross-env VITE_APP_MODE=admin vite build && cp capacitor.admin.config.ts capacitor.config.ts && npx cap copy android",
     "preview": "vite preview",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "seed": "node src/lib/seedData.js"
@@ -60,6 +60,7 @@
     "class-variance-authority": "*",
     "clsx": "*",
     "cmdk": "^1.1.1",
+    "cross-env": "^10.1.0",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "*",
