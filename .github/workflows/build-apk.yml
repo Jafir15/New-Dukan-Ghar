@@ -35,6 +35,9 @@ jobs:
       - name: Build User Web App
         run: npm run build:user
         
+      - name: Copy User Capacitor Config
+        run: cp capacitor.user.config.ts capacitor.config.ts
+
       - name: Add Android Platform (if missing)
         run: npx cap add android || true
 
@@ -43,9 +46,7 @@ jobs:
 
       # Custom config file copy kar ke sync karne ka sahi tareeqa
       - name: Sync Capacitor (User)
-        run: |
-          cp capacitor.user.config.ts capacitor.config.ts
-          npx cap sync android
+        run: npx cap sync android
 
       - name: Build User APK
         working-directory: ./android
@@ -61,11 +62,11 @@ jobs:
       - name: Build Admin Web App
         run: npm run build:admin
         
-      # Admin config file copy kar ke sync karne ka sahi tareeqa
+      - name: Copy Admin Capacitor Config
+        run: cp capacitor.admin.config.ts capacitor.config.ts
+
       - name: Sync Capacitor (Admin)
-        run: |
-          cp capacitor.admin.config.ts capacitor.config.ts
-          npx cap sync android
+        run: npx cap sync android
 
       - name: Build Admin APK
         working-directory: ./android
